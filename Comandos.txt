@@ -1,0 +1,2 @@
+﻿Add-Migration InitialCreate -p VClinic.Infrastructure -s VClinic.Api
+Update-Database -p VClinic.Infrastructure -s VClinic.Api

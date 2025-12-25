@@ -1,0 +1,48 @@
+# Visual Studio
+.vs/
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.log
+
+# Cache, dll, exe, pdb
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# NuGet Packages
+packages/
+*.nupkg
+*.snupkg
+
+# Database files
+*.db
+*.db-wal
+*.db-shm
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Publish outputs
+publish/
+*.pubxml
+*.pubxml.user
+
+# Backup & temporary files
+*.bak
+*.tmp
+*.temp
+
+# Others
+launchSettings.json

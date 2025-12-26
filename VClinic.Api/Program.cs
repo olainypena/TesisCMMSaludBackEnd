@@ -14,8 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    options.UseSqlServer(connectionString);
+
+    if (builder.Environment.IsDevelopment())
+    {
+        options.UseSqlServer(connectionString);   // LOCAL
+    }
+    else
+    {
+        options.UseNpgsql(connectionString);      // PRODUCCIÓN
+    }
 });
+
 //endregion
 
 // Application / Infrastructure

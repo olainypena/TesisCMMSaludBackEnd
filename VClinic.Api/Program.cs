@@ -29,16 +29,29 @@ builder.Services.AddSwaggerGen();
 //endregion
 
 //CORS (React)
+// CORS (Local + Producción)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactApp", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .SetIsOriginAllowed(origin =>
+            {
+                // Local
+                if (origin == "http://localhost:5173")
+                    return true;
+
+                // Producción (Vercel)
+                if (origin.EndsWith(".vercel.app"))
+                    return true;
+
+                return false;
+            });
     });
 });
+
 //endregion
 
 // Validation response
@@ -133,6 +146,15 @@ app.UseCors("ReactApp");
 app.UseAuthorization();
 
 app.MapControllers();
+
+//Port -- para Render
+
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrEmpty(port))
+{
+    app.Urls.Add($"http://*:{port}");
+}
+
 
 app.Run();
 //endregion
